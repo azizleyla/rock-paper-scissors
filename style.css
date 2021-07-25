@@ -145,3 +145,19 @@ div.fadeIn {
     transform: translateY(0px);
   }
 }
+
+.over {
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+.again {
+  margin-top: 1rem;
+  margin-left: 14.4rem;
+  display: none;
+}
+.show {
+  display: block;
+}
