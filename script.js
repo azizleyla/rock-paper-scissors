@@ -12,11 +12,12 @@ const playBtn = document.querySelector(".intro button");
 const introScreen = document.querySelector(".intro");
 const match = document.querySelector(".match");
 
-let playing
+
+
 const game = () => {
     let pScore = 0;
     let cScore = 0;
-    playing = true;
+    let playing = true;
 
     //Start the Game
     const startGame = () => {
@@ -39,13 +40,14 @@ const game = () => {
         //Computer Options
         const computerOptions = ["rock", "paper", "scissors"];
 
-        if (playing) {
-            options.forEach(option => {
-                option.addEventListener("click", function () {
-                    //Computer Choice
-                    const computerNumber = Math.floor(Math.random() * 3);
-                    const computerChoice = computerOptions[computerNumber];
 
+
+        options.forEach(option => {
+            option.addEventListener("click", function () {
+                //Computer Choice
+                const computerNumber = Math.floor(Math.random() * 3);
+                const computerChoice = computerOptions[computerNumber];
+                if (playing) {
                     setTimeout(() => {
                         //Here is where we call compare hands
                         compareHands(this.textContent, computerChoice);
@@ -56,10 +58,12 @@ const game = () => {
                     //Animation
                     playerHand.style.animation = "shakePlayer 2s ease";
                     computerHand.style.animation = "shakeComputer 2s ease";
-                });
+                }
             });
 
-        }
+        });
+
+
     };
 
     const updateScore = () => {
@@ -67,7 +71,10 @@ const game = () => {
         playerScore.textContent = pScore;
         computerScore.textContent = cScore;
 
-        gameOver()
+        if (pScore === 3 || cScore === 3) {
+            gameOver()
+
+        }
 
     };
 
@@ -124,19 +131,16 @@ const game = () => {
 
     };
     const gameOver = () => {
-        if (pScore === 3 || cScore === 3) {
-            playing = false;
-            overText.textContent = 'Game over🎉'
-            againBtn.classList.add('show')
-            againBtn.addEventListener('click', resetGame);
-
-
-        }
+        playing = false;
+        overText.textContent = 'Game over🎉'
+        againBtn.classList.add('show')
+        againBtn.addEventListener('click', resetGame);
 
     }
     const resetGame = () => {
         cScore = 0;
         pScore = 0;
+        playing = true;
         playerScore.textContent = pScore;
         computerScore.textContent = cScore;
         winner.textContent = "Choose an option";
@@ -146,10 +150,10 @@ const game = () => {
         againBtn.classList.remove('show')
 
     }
-
     //Is call all the inner function
     startGame();
     playMatch()
+
 };
 
 game();
